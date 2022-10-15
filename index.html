@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Smogon Site Content Manager Exercise</title>
+</head>
+<body>
+<p>Congratualtions on becoming a memeber of Smogon's staff! Now that you're here, you've earned the ability to directly manage pages on Smogon. As a Site Content Manager, you will be able to merge/edit/reject submissions within the CMS (and SCMS if you are a member of Translations staff). Before receiving your new powers, however, you'll need to complete this set of exercises.</p>
+
+<p>Send a message to <a href="https://www.smogon.com/forums/members/lumari.232216/" target="_blank">Lumari</a> and <a href="https://www.smogon.com/forums/members/shiny-finder.206479/" target="_blank">shiny finder</a> on the forums upon completion. You will receive your new powers soon after! If you have not already, refer to the following documentation, as they are resources you will need throughout this exercise and your tenure as a Site Content Manager. They will be linked again as needed.</p>
+
+<ul>
+	<li><a href="https://www.smogon.com/forums/threads/introduction-to-the-site-content-manager-badge.3592959/" target="_blank">Introduction to the Site Content Manager Badge</a></li>
+	<li><a href="https://www.smogon.com/forums/threads/guide-to-the-cms-scms.3541848/" target="_blank">Guide to the CMS/SCMS</a></li>
+	<li><a href="https://www.smogon.com/forums/threads/gen-8-analysis-formatting-guide-writing-standards.3656647/#post-8291406" target="_blank">Analysis Format Standards</a></li>
+	<li><a href="https://daringfireball.net/projects/markdown/">Guide to Markdown Syntax</a></li>
+	<li><a href="https://www.smogon.com/forums/threads/smogon-html-101-the-utter-basics.3477029/" target="_blank">Basics of HTML</a></li>
+</ul>
+
+<p><strong>Note: </strong>Your work will not be saved if you close this page. Please keep the exercise open during the duration of your work; otherwise, you will need to start over from the beginning.</p>
+
+<p>Please enter your username as it appears on the forums and click the button below to begin.</p>
+
+<form>
+	<label for="username">Username: </label>
+	<input type="text" id="username" name="username" value=""><br />
+
+	<label for="position">I am a:</label>
+
+	<select name="position" id="position">
+	  <option value="cc">C&amp;C mod</option>
+	  <option value="tfp">TFP/IGA mod</option>
+	  <option value="translation">Translations mod</option>
+	</select> 
+</form>
+<button id="beginButton">Begin!</button>
+
+<script type="text/javascript">
+	document.getElementById("beginButton").onclick = function () {
+		// determine if the username field is empty
+		const user = document.getElementById('username');
+		const mod = document.getElementById('position');
+		if (!user.value) {
+			alert('Username field is required!');
+			return;
+		} else {
+			sessionStorage.setItem('username', JSON.stringify(user.value));
+			sessionStorage.setItem('mod', JSON.stringify(mod.value));
+		}
+		location.href = "filename.html";
+	};
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Finished</title>
+
+	<style>
+		.checksContent {
+			float: left;
+			margin-right: 10px;
+		}
+
+		.ulContent {
+			margin: 2px;
+		}
+
+		.correct {
+			border: 3px solid green;
+		}
+
+		.correct:focus {
+			outline: none;
+		}
+
+		.incorrect {
+			border: 3px solid red;
+		}
+
+		form > div {
+			margin: 50px 0px;
+		}
+
+		#checksContent, #creditsContent {
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<h2 id="exercise">Exerise: Completed!</h2>
+
+
+
+
+<p class="completedText">Congratulations! You've finished all of the exercises required for the Site Content Manager badge! Please send a screenshot of this page to to <a href="https://www.smogon.com/forums/members/lumari.232216/" target="_blank">Lumari</a> and <a href="https://www.smogon.com/forums/members/shiny-finder.206479/" target="_blank">shiny finder</a> on the forums along with any questions you may have.</p>
+
+<p class="completedText" id="completedTime"></p>
+
+
+<script type="text/javascript">
+	// reset each field to the inital values on page load
+	function init() {
+		const username = JSON.parse(sessionStorage.getItem('username'));
+		document.getElementById('completedTime').innerHTML = 'Username: ' + username + '<br />Time: ' + new Date(new Date().getTime());
+	}
+
+	window.onload = init();
+</script>
+
+</body>
+</html>

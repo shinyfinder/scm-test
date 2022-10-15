@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Markdown Format</title>
+
+	<style>
+		.checksContent {
+			float: left;
+			margin-right: 10px;
+		}
+
+		.ulContent {
+			margin: 2px;
+		}
+
+		.correct {
+			border: 3px solid green;
+		}
+
+		.correct:focus {
+			outline: none;
+		}
+
+		.incorrect {
+			border: 3px solid red;
+		}
+
+		form > div {
+			margin: 50px 0px;
+		}
+
+		#checksContent, #creditsContent {
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<h2 id="exercise">Exercise: HTML Format</h2>
+
+	<p>Correct the mistakees in the following Smogon HTML snippet. If you need a to brush up on your HTML basics, <a href="https://www.smogon.com/forums/threads/smogon-html-101-the-utter-basics.3477029/"  target="_blank">this thread</a> might be helpful. Note that Smogon uses its own version of HTML. Instead of the normal tags you may see in regular HTML, we opt for simple header tags: [title], [head], and [page]. Use our tags in all of your HTML's; never use the traditional headers for these sections. All self-closing tags need to include the trailing "/""; i.e. &lt;br /&gt;.</p>
+	
+	<p>Closing or reloading this page will reset your answers. Incorrect entries are marked by a thick red border. Once the correct value is entered, the border will become green and the input will be locked in. Correct all of the fields to proceed.</p>
+
+	<button id="forceButton">Force all fields completed</button>
+
+	<hr />
+
+<form id="htmlForm">
+	<div id="titleSection">
+		
+		<input type="text" id="title" name="title" value="[tite]" class="incorrect">
+		<p>The Site Content Manager badge</p>
+	</div>
+
+	<div id="headSection">
+		<p>&lt;style&gt; type="text/css"&gt;</p>
+		<p>p{</p>
+		<input type="text" id="css1" name="css1" value="color: red" class="headContent incorrect"><br />
+		<input type="text" id="css2" name="css2" value="font-size:10px;" class="headContent correct"><br />
+
+		<p>}<br />&lt;/style&gt;</p>
+	</div>
+
+
+	<div id="pageSection">
+		<p>&lt;p&gt;The Site Content Manager badge is a badge that gives you the ability to &lt;strong&gt;merge&lt;/strong&gt; and / or &lt;em&gt;ignore<input type='text' id='page1' name='page1' value="<em>" size="2" class="pageContent incorrect"> changes that are made on site.<input type='text' id='page2' name='page2' value="" class="'pageContent incorrect" size="2"></p>
+
+		<p>&lt;p&gt;The badge is represented by the following image&lt;/p&gt;</p>
+		<input type="text" id="imgField" name="imgField" value='<img src="http://www.smogon.com/forums/media/badges/sitestaff.png />' class="pageContent incorrect" size="100"><br />
+		<input type="text" id="header1" name="header1" value="<strong>Uses</strong>" class="pageContent incorrect"><br />
+		<p>&lt;p&gt;You can do some great things with this badge. This includes but it's not limited to:&lt;/p&gt;</p>
+		<input type="text" id="ulOpen" name="ulOpen" value="<ul>" class="pageContent correct" size="3"><br />
+			<input type="text" id="ul1" name="ul1" value="<li>Uploading The Flying Press articles<li>" class="pageContent incorrect" size="25"><br />
+			<input type="text" id="ul2" name="ul2" value="<li>Updating dex analyses<li>" class="pageContent incorrect" size="25"><br />
+			<input type="text" id="ul3" name="ul3" value="<li>Deleting files<li>" class="pageContent incorrect" size="25"><br />
+			<input type="text" id="ul4" name="ul4" value="<li>Renaming files</li>" class="pageContent correct" size="25"><br />
+		<input type="text" id="ulClose" name="ulClose" value="</ul>" class="pageContent correct" size="3"><br />
+
+		<input type="text" id="header2" name="header2" value="<strong>Holders</strong>" class="pageContent incorrect"><br />
+
+		<input type="text" id="pageBody" name="pageBody" value="<P>Some of our.....<br></br>" class="pageContent incorrect"><br />
+		<p>best users have this badge. &lt;del&gt;In no special order&lt;/del&gt; &lt;ins&gt;RANKED FROM BEST TO WORST&lt;/ins&gt;:&lt;/p&gt;</p>
+
+		<input type="text" id="olOpen" name="olOpen" value="<ul>" class="pageContent incorrect" size="3"><br />
+			<input type="text" id="ol1" name="ol1" value="<li>anto</li>" class="pageContent correct" size="25"><br />
+			<input type="text" id="ol2" name="ol2" value='<li><a src="/forums/members/lumari.232216/">Lumari</li></a>' class="pageContent incorrect" size="25"><br />
+			<input type="text" id="ol3" name="ol3" value="<li>P Squared</li>" class="pageContent correct" size="25"><br />
+			<input type="text" id="ol4" name="ol4" value="<li>Jellicent<li>" class="pageContent incorrect" size="25"><br />
+			<input type="text" id="ol5" name="ol5" value="<li>macle</LI>" class="pageContent incorrect" size="25"><br />
+			<input type="text" id="ol6" name="ol6" value="<li>GatoDelFuego</Li>" class="pageContent incorrect" size="25"><br />
+			<input type="text" id="ol7" name="ol7" value="<li>Tikitik</LI>" class="pageContent incorrect" size="25"><br />
+		<input type="text" id="olClose" name="olClose" value="</ul>" class="pageContent incorrect" size="3"><br />
+	</div>
+
+</form>
+
+<p class="completedText" style="display: none">Great job! Lots of subtleties to remember here, so always check your work carefully!</p>
+
+<p class="completedText" style="display: none">Please click the button below to proceed</p>
+
+<button id="proceedButton" class="completedText" style="display: none">Proceed</button>
+
+<script type="text/javascript">
+	// next page
+	document.getElementById("proceedButton").onclick = function () {
+		// get their mod type from storage and go to the next page
+		location.href = "last.html";
+	};
+</script>
+
+
+<script type="text/javascript">
+	// reset each field to the inital values on page load
+	function init() {
+		document.querySelector('form').reset();
+	}
+
+	window.onload = init();
+</script>
+
+<script type="text/javascript">
+	// gather each input into an array
+	let inputArr = document.querySelectorAll("input");
+
+	// function to monitor changes in the inputs
+	const inputHandler = function(e) {
+		const editedID = e.target.id;
+
+		switch (editedID) {
+			case 'title':
+				if (e.target.value == '[title]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'css1':
+				if (e.target.value == 'color: red;') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'page1':
+				if (e.target.value == '</em>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+			case 'page2':
+				if (e.target.value == '</p>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+			case 'imgField':
+				if (e.target.value.includes('src="/forums/media/badges/sitestaff.png"') && (/alt="(.*?)"/.test(e.target.value) || /alt='(.*?)'/.test(e.target.value)) ) {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+			case 'header1':
+				if (e.target.value == '<h2>Uses</h2>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+			case 'ul1':
+				if (e.target.value == '<li>Uploading The Flying Press articles</li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ul2':
+				if (e.target.value == '<li>Updating dex analyses</li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ul3':
+				if (e.target.value == '<li>Deleting files</li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'header2':
+				if (e.target.value == '<h2>Holders</h2>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'pageBody':
+				if (e.target.value == '<p>Some of our.....<br /><br />' || e.target.value == '<p>Some of our.....<br />') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'olOpen':
+				if (e.target.value == '<ol>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ol2':
+				if (e.target.value == '<li><a href="/forums/members/lumari.232216/">Lumari</a></li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ol4':
+				if (e.target.value == '<li>Jellicent</li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ol5':
+				if (e.target.value == '<li>macle</li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ol6':
+				if (e.target.value == '<li>GatoDelFuego</li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ol7':
+				if (e.target.value == '<li>Tikitik</li>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'olClose':
+				if (e.target.value == '</ol>') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			default:
+				console.log('err');
+		}
+	}
+
+	// add event handler to each input and check if value is incorrect
+	inputArr.forEach(function(elem) {
+		elem.addEventListener('input', inputHandler);
+		if (elem.classList.contains("correct")) {
+			elem.readOnly = true;
+		}
+	})
+
+
+	function setCorrect(e) {
+		e.target.readOnly = true;
+		e.target.classList.add("correct");
+		e.target.classList.remove('incorrect');
+	}
+
+	function allFinished(arr) {
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i].classList.contains("incorrect")) {
+				return;
+			}
+		}
+		document.getElementById("htmlForm").style.display = 'none';
+		document.getElementById("exercise").innerHTML = 'Exercise: Completed!';
+		const comp = document.getElementsByClassName("completedText");
+		for (let i = 0; i < comp.length; i++) {
+			comp[i].style.display = 'block';
+		}
+	}
+
+	document.getElementById('forceButton').onclick = function () {
+		inputArr.forEach(function(elem) {
+			elem.classList.add('correct');
+			elem.classList.remove('incorrect');
+		})
+		allFinished(inputArr);
+	};
+
+
+</script>
+
+
+</body>
+</html>

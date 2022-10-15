@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Markdown Format</title>
+
+	<style>
+		.checksContent {
+			float: left;
+			margin-right: 10px;
+		}
+
+		.ulContent {
+			margin: 2px;
+		}
+
+		.correct {
+			border: 3px solid green;
+		}
+
+		.correct:focus {
+			outline: none;
+		}
+
+		.incorrect {
+			border: 3px solid red;
+		}
+
+		form > div {
+			margin: 50px 0px;
+		}
+
+		#checksContent, #creditsContent {
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<h2 id="exercise">Exercise: Markdown Format</h2>
+
+	<p>Add proper Markdown snytax to the text below. If you need a guide on proper Markdown syntax, you can find one <a href="https://daringfireball.net/projects/markdown/syntax" target="_blank">here</a>. Closing or reloading this page will reset your answers. Incorrect entries are marked by a thick red border. Once the correct value is entered, the border will become green and the input will be locked in. Correct all of the fields to proceed.</p>
+
+	<button id="forceButton">Force all fields completed</button>
+
+	<hr />
+
+<form id="markdownForm">
+	<div id="introSection">
+		<p>Markdown</p>
+		<input type="text" id="intro" name="intro" value="" class="incorrect">
+		<p>Markdown is a neat tool to convert text into HTML automatically, as doing HTML yourself can be tedious and time-consuming. Markdown aims to be quick and user-friendly, bypassing the need to add tags to the end of every line.</p>
+	</div>
+
+	<div id="ulSection">
+		<p>In addition to headers, you can make lists as well, such as this list of neat users:</p>
+		
+		<input type="text" id="ul1" name="ul1" value="" class="ulContent incorrect" size="1">
+			<label for="ul1">Oglemi</label><br />
+		<input type="text" id="ul2" name="ul2" value="" class="ulContent incorrect" size="1">
+			<label for="ul2">tennisace</label><br />
+		<input type="text" id="ul3" name="ul3" value="" class="ulContent incorrect" size="1">
+			<label for="ul3">Zebraiken</label><br />
+		<input type="text" id="ul4" name="ul4" value="" class="ulContent incorrect" size="1">
+			<label for="ul4">aim</label><br />
+		<input type="text" id="ul5" name="ul5" value="" class="ulContent incorrect" size="1">
+			<label for="ul5">Nexus</label><br />
+	</div>
+
+
+	<div id="olSection">
+		<p>And you can also rank them:</p>
+		<input type="text" id="ol1" name="ol1" value="" class="ulContent incorrect" size="1">
+			<label for="ol1">Oglemi</label><br />
+		<input type="text" id="ol2" name="ol2" value="" class="ulContent incorrect" size="1">
+			<label for="ol2">tennisace</label><br />
+		<input type="text" id="ol3" name="ol3" value="" class="ulContent incorrect" size="1">
+			<label for="ol3">Zebraiken</label><br />
+		<input type="text" id="ol4" name="ol4" value="" class="ulContent incorrect" size="1">
+			<label for="ol4">aim</label><br />
+		<input type="text" id="ol5" name="ol5" value="" class="ulContent incorrect" size="1">
+			<label for="ol5">Nexus</label><br />		
+	</div>
+
+	<div id="linkSection">
+		<p>Linking is a little confusing, but linking to losers like <input type="text" id="link1" name="link1" value="Nexus" class="incorrect"> is something that needs to be done sometimes.</p>
+		
+		<p>For now though, that's all that we need to know about Markdown as that'll be largely what's used in analyses. Until the future anyway!</p>
+
+	</div>
+
+</form>
+
+<p class="completedText" style="display: none;">Nice! If you notice, you're already using some of these within the analysis format, specifically the headers and unordered lists (see credits section). So if you've ever wondered how the system parses the information in the analysis format, now you know!</p>
+
+<p class="completedText" style="display: none">Please click the button below to proceed</p>
+
+<button id="proceedButton" class="completedText" style="display: none">Proceed</button>
+
+<script type="text/javascript">
+	// next page
+	document.getElementById("proceedButton").onclick = function () {
+		// get their mod type from storage and go to the next page
+		const modType = JSON.parse(sessionStorage.getItem('mod'));
+		if (modType == 'cc') {
+			location.href = "last.html";
+		} else {
+			location.href = "html_test.html";
+		} 
+		
+	};
+</script>
+
+
+<script type="text/javascript">
+	// reset each field to the inital values on page load
+	function init() {
+		document.querySelector('form').reset();
+	}
+
+	window.onload = init();
+</script>
+
+<script type="text/javascript">
+	// gather each input into an array
+	let inputArr = document.querySelectorAll("input");
+
+	// function to monitor changes in the inputs
+	const inputHandler = function(e) {
+		const editedID = e.target.id;
+
+		switch (editedID) {
+			case 'intro':
+			if (/^=+$/.test(e.target.value) || /^-+$/.test(e.target.value) && e.target.value.length >= 3) {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ul1':
+			case 'ul2':
+			case 'ul3':
+			case 'ul4':
+			case 'ul5':
+				if (/^[=\+-]+$/.test(e.target.value)){
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'ol1':
+			case 'ol2':
+			case 'ol3':
+			case 'ol4':
+			case 'ol5':
+				if (/^(\d\.)+$/.test(e.target.value)) {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'link1':
+				if (e.target.value == '[Nexus](https://www.smogon.com/forums/members/nexus.35537/)' || e.target.value == '[Nexus](/forums/members/nexus.35537/)') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			default:
+				console.log('err');
+		}
+	}
+
+	// add event handler to each input and check if value is incorrect
+	inputArr.forEach(function(elem) {
+		elem.addEventListener('input', inputHandler);
+		if (elem.classList.contains("correct")) {
+			elem.readOnly = true;
+		}
+	})
+
+
+	function setCorrect(e) {
+		e.target.readOnly = true;
+		e.target.classList.add("correct");
+		e.target.classList.remove('incorrect');
+	}
+
+	function allFinished(arr) {
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i].classList.contains("incorrect")) {
+				return;
+			}
+		}
+		document.getElementById("markdownForm").style.display = 'none';
+		document.getElementById("exercise").innerHTML = 'Exercise: Completed!';
+		const comp = document.getElementsByClassName("completedText");
+		for (let i = 0; i < comp.length; i++) {
+			comp[i].style.display = 'block';
+		}
+	}
+
+	document.getElementById('forceButton').onclick = function () {
+		inputArr.forEach(function(elem) {
+			elem.classList.add('correct');
+			elem.classList.remove('incorrect');
+		})
+		allFinished(inputArr);
+	};
+
+
+</script>
+
+
+</body>
+</html>

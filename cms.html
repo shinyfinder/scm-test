@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CMS Submissions</title>
+
+	<style>
+		#result1 {
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<h2 id="exercise">Exercise: CMS Submissions</h2>
+
+	<p>As a Site Content Manager, you are responsible for merging edits to the dex so that they are live to the public. In general, you should only merge submissions for the tier you are responsible for. However, if there are small objective changes, you have the powers to merge submissions for any tier. Not all submissions are ready to be merged; some may require further edits or may not be correct at all, in which case you can edit or reject the submissions, respectively. The process of working with the CMS is outline in <a href="http://www.smogon.com/cms/">this thread</a> on the forums. For now, let's practice catching mistakes in submissions.</p>
+
+	<p>In this exercise, indicate whether you would merge the submission as is. If not, select the most appropriate reason for your rejection. Assume that the changes have passed QC and the only edits are those shown in the images&mdash;which may not be a good thing!</p>
+
+	<hr />
+
+<form id="cmsForm">
+	<h2>Would you merge this submission?</h2>
+
+	<img src="" alt="" id="sub"/>
+	<br />
+	<input type="radio" id="opt1" name="opts" value="fine">
+		<label for="opt1">Yes, this submission is fine.</label><br />
+	<input type="radio" id="opt2" name="opts" value="typo">
+		<label for="opt2">No, this submission contains typos.</label><br />
+	<input type="radio" id="opt3" name="opts" value="content">
+		<label for="rule1Corr">No, other content needs to be updated that wasn't.</label><br />
+
+	<p id="result1"></p>
+
+	<button id="nextImgButton" class="subcompletedText" style="display: none">Next Image</button>
+</form>
+
+<p class="completedText" style="display: none">Nice work. Some of these are tricky, so don't worry if you didn't get all of them on the first try. What's important is knowing what errors to look out for before hitting that "merge" button.</p>
+
+<p class="completedText" style="display: none">Please click the button below to proceed.</p>
+
+<button id="proceedButton" class="completedText" style="display: none">Proceed</button>
+
+<!--Script for next page button-->
+<script type="text/javascript">
+	// next page
+	document.getElementById("proceedButton").onclick = function () {
+		// get their mod type from storage and go to the next page
+		const modType = JSON.parse(sessionStorage.getItem('mod'));
+		if (modType == 'tfp') {
+			location.href = "html_test.html";
+		} else {
+			location.href = "analysisFormat.html";
+		} 
+		
+	};
+</script>
+
+
+
+<!--Script to handle input-->
+<script type="text/javascript">
+	// save the image URLs into an array
+	const imgArr = [
+		"https://i.imgur.com/zyxSLDN.png", // 0
+		"https://i.imgur.com/icalSXG.png", // 1
+		"https://i.imgur.com/Nxpj16l.png", // 2
+		"https://i.imgur.com/PRbcqoy.png", // 3
+		"https://i.imgur.com/C5oTUJZ.png", // 4
+		"https://i.imgur.com/4trcSr7.png", // 5
+		"https://i.imgur.com/K8FR0lS.png", // 6
+		"https://i.imgur.com/Xq8zL96.png", // 7
+		"https://i.imgur.com/tXCc3Hb.png", // 8
+		"https://i.imgur.com/HjFPYmC.png", // 9
+		"https://i.imgur.com/kgNDzwu.png", // 10
+		"https://i.imgur.com/nq4oOuO.png" // 11
+	];
+
+	let chosen = [];
+	// save chosen to sessionStorage to save between dom loads
+	// if the sessionStorage doesn't exist, init
+	if (!sessionStorage.getItem('chosen')) {
+		sessionStorage.setItem('chosen', JSON.stringify(chosen));
+		// else, if it's too long (i.e. not enough examples left to get unique values), re-init
+	} else if (JSON.parse(sessionStorage.getItem('chosen')).length >= 6) {
+		sessionStorage.setItem('chosen', JSON.stringify(chosen));
+	} 
+	
+	
+	// next image button
+	document.getElementById("nextImgButton").onclick = getRandomImg(imgArr);
+
+
+	
+	// return unique random integer between 0 and [length of image array]-1
+	function getRandomImg(array) {
+		
+		//get the array of already chosen values from the session storage
+		let alreadyChosen = JSON.parse(sessionStorage.getItem('chosen'));
+
+		// pick a random entry from the list of images
+		let randNum = Math.floor(Math.random() * (imgArr.length-1));
+
+		// check if it's already been chosen
+		if (!alreadyChosen.includes(randNum)) {
+			// push to the local already-chosen array
+			alreadyChosen.push(randNum);
+
+			// push to the "global" chosen array so that it can be passed to the inputHandler.
+			chosen.push(randNum);
+
+			// update the session storage with the array of already chosen values
+			sessionStorage.setItem('chosen', JSON.stringify(alreadyChosen));
+			console.log(randNum);
+			// set the image alt and src text to the chosen image.
+			document.getElementById("sub").alt = imgArr[alreadyChosen[alreadyChosen.length-1]];
+			document.getElementById("sub").src = imgArr[alreadyChosen[alreadyChosen.length-1]];
+			return;
+		} else { // if it's been chosen already, pick again.
+			getRandomImg(imgArr);
+		}
+	}
+
+	// gather each input into an array
+	let inputArr = document.querySelectorAll("input");
+
+	// function to monitor changes in the inputs
+	const inputHandler = function(e) {
+		const editedVal = e.target.value;
+		const imgNum = chosen[chosen.length-1];
+
+		switch (imgNum) {
+			case 0:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "Correct! Quite a few typos here: double 'and,' Specs should be Choice Specs, and Koko should be capitalized. Bonus points if you noticed the missing serial comma!<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+				}
+				break;
+			case 1:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "Correct! We still need that period.<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+				}
+				break;
+			case 2:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "Correct! HJK should be spelled out. Bonus points if you noticed too that Lopunny should be Mega Lopunny and STABs should be STAB moves!<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+				}
+				break;
+			case 3:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again. This one is tricky.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "No typos here.";
+				} else {
+					document.getElementById("result1").innerHTML = "Correct! While the changes in this submission are fine, the EV spread in the set itself wasn't updated. That needs to be changed as well.<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				}
+				break;
+			case 4:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "No typos here.";
+				} else {
+					document.getElementById("result1").innerHTML = "Correct! Not all of the mentions of Hydro Pump were updated.<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				}
+				break;
+			case 5:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Correct!<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "No typos here.";
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+
+				}
+				break;
+			case 6:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "Correct! There is a missing space in 'in the' amd a typo in 'undesirable.'<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+				}
+				break;
+			case 7:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "No typos here.";
+				} else {
+					document.getElementById("result1").innerHTML = "Correct! There are definitely some drawbacks to the new recoil damage.<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				}
+				break;
+			case 8:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "No typos here.";
+				} else {
+					document.getElementById("result1").innerHTML = "Correct! The text still mentions it outspeeds base 50s that have been creeping, which is no longer valid.<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				}
+				break;
+			case 9:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "Correct! EVs should be capitalized.<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+				}
+				break;
+			case 10:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Correct!<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "No typos here.";
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+
+				}
+				break;
+			case 11:
+				if (editedVal == "fine") {
+					document.getElementById("result1").innerHTML = "Try again.";
+				} else if (editedVal == 'typo'){
+					document.getElementById("result1").innerHTML = "Correct! Quite a few typos here: Mienshao is misspelled, Tentacruel should be capitalized, and there's a missing 'and.'<br />Click the button below to proceed.";
+					document.getElementById("result1").style.color = "green";
+					setCorrect(inputArr);
+					document.getElementById("nextImgButton").style.display = "block";
+					allFinished();
+				} else {
+					document.getElementById("result1").innerHTML = "Actually the content is fine here. Everything was updated that needed to be.";
+				}
+				break;
+			default:
+				console.log('err');
+		}
+	}
+
+	// add event handler to each input and check if value is incorrect
+	inputArr.forEach(function(elem) {
+		elem.addEventListener('input', inputHandler);
+	})
+
+
+	function setCorrect(arr) {
+		for (let i = 0; i < arr.length; i++) {
+			arr[i].disabled = true;
+			arr[i].classList.add("correct");
+		}
+	}
+
+	function allFinished() {
+		// force them to answer 5 questions
+		const arr = JSON.parse(sessionStorage.getItem('chosen'));
+
+		if (arr.length < 5) {
+			return;
+		}
+		document.getElementById("cmsForm").style.display = 'none';
+		document.getElementById("exercise").innerHTML = 'Exercise: Completed!';
+		const comp = document.getElementsByClassName("completedText");
+		for (let i = 0; i < comp.length; i++) {
+			comp[i].style.display = 'block';
+		}
+	}
+
+
+</script>
+
+
+</body>
+</html>

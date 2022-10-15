@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Analysis Format</title>
+
+	<style>
+		.checksContent {
+			float: left;
+			margin-right: 10px;
+		}
+
+		.setContent, .setHeader {
+			margin: 2px;
+		}
+
+		.correct {
+			border: 3px solid green;
+		}
+
+		.correct:focus {
+			outline: none;
+		}
+
+		.incorrect {
+			border: 3px solid red;
+		}
+
+		form > div {
+			margin: 50px 0px;
+		}
+
+		#checksContent, #creditsContent {
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<h2 id="exercise">Exercise: Analysis Format</h2>
+
+	<p>Correct the analysis format using the Gen 8 <a href="https://www.smogon.com/forums/threads/gen-8-analysis-formatting-guide-writing-standards.3656647/#post-8291406" target="_blank">full analysis format standards</a>. A raw text version of the sample analysis is found <a href="https://pastebin.com/bRGLGL3G" target="_blank">here</a>, should you need to reference back to the original. Closing or reloading this page will reset your answers. Incorrect entries are marked by a thick red border. Once the correct value is entered, the border will become green and the input will be locked in. Correct all of the fields to proceed.</p>
+
+	<button id="forceButton">Force all fields completed</button>
+
+	<hr />
+
+<form id="analysisForm">
+	<div id="overviewSection">
+		<!--<h2>Overview Section</h2>-->
+		<input type="text" id="overview" name="overview" value="" class="incorrect">
+		<p>Accelgor is the fastest Pokemon with access to Spikes in RU, which makes it a staple on Spikes-stacking hyper offense teams. Accelgor's access to Final Gambit means that it can weaken Defog and Rapid Spin users and prevent them from removing entry hazards for one turn; it can also prevent opposing set up with Encore. However, Accelgor is very frail and can't survive even weak attacks, and its attacks are not very strong themselves. Moreover, it faces competition from Omastar, who can also set up Stealth Rock, can directly threaten Defoggers, and has the bulk to set up hazards multiple times in a match.</p>
+	</div>
+
+	<div id="setSection">
+		<!--<h2>Set Section</h2>-->
+		
+		<input type="text" id="setHeader1" name="setHeader1" value="Spikes Lead" class="setHeader incorrect"><br />
+		<input type="text" id="setContent1" name="setContent1" value="#########" class="setContent incorrect"size="30"><br />
+		<input type="text" id="setContent2" name="setContent2" value="move 1: Spikes" class="setContent correct" size="30"><br />
+		<input type="text" id="setContent3" name="setContent3" value="move 2: U-Turn" class="setContent incorrect" size="30"><br />
+		<input type="text" id="setContent4" name="setContent4" value="move 3: Encore" class="setContent correct" size="30"><br />
+		<input type="text" id="setContent5" name="setContent5" value="move 4: Bug Buzz" class="setContent correct" size="30"><br />
+		<input type="text" id="setContent6" name="setContent6" value="ability: Hydartion" class="setContent incorrect" size="30"><br />
+		<input type="text" id="setContent7" name="setContent7" value="item:Focus Sash" class="setContent incorrect" size="30"><br />
+		<input type="text" id="setContent8" name="setContent8" value="evs: 252 HP / 4 SpAtk / 252 Spe" class="setContent incorrect" size="30"><br />
+		<input type="text" id="setContent9" name="setContent9" value="Nature: Timid" class="setContent incorrect" size="30">
+	</div>
+
+
+	<div id="commentsSection">
+		<!--<h2>Set Comments Section</h2>-->
+		<input type="text" id="commentsHeader" name="commentsHeader" value="" class="incorrect">
+		<p>Set Description<br />========</p>
+ 
+		<p>Accelgor is a very good Spikes setter due to its high Speed stat, which provides very useful support to hyper offense teams. Final Gambit allows Accelgor to prevent Rapid Spin or Defog for a turn and gives a teammate a free switch-in. Final Gambit can also deal huge damage to most Defog and Rapid Spin users if Accelgor has enough HP left. Encore prevents Accelgor from becoming setup bait and might give setup oppurtunities to its own teammates as well. Finally, Bug Buzz is Accelgor's STAB move of choice and prevents it from being completely shut down by Taunt.</p>
+ 
+		<p>252 Speed EVs and a Timid nature allow Accelgor to outspeed the entire unboosted metagame and quickly set hazards. 252 HP EVs give Accelgor some much needed bulk and maximize the potential power of Final Gambit. Focus Sash guarantees that Accelgor sets at least one layer of Spikes. 252 Special Attack EVs can be used instead if you want Accelgor to hit harder. Accelgor's abilities are situational, but they might come in handy for different playstyles. Sticky Hold prevents Accelgor from being crippled by Trick users, but Unburden allows Accelgor to set multiple layers of Spikes against Choice Scarf Pokemon that can bring it to 1 HP.</p>
+ 
+		<p>Usage Tips<br />========</p>
+ 
+		<p>Although this Accelgor set works best as a lead on hyper offense teams, it is not advisable to lead with it if the opponent has a Fake Out user such as Ambipom or a multi-hit move user such as Cinccino or Rhyperior, as they will limit Accelgor to one layer of Spikes. Due to its high Speed, Accelgor can Encore almost all setup Pokemon and thereby create setup oppurtunities for teammates. Final Gambit should be used carefully, though it is handy against opposing Defog and Rapid Spin users, especially at high HP. Golbat, Gligar, Togekiss, Hitmonlee, Hitmontop, and Kabutops are all OHKOed by Final Gambit if Accelgor is at full health. Even if it is not at high enough HP, Final Gambit allows you to bring in a check freely, while also preventing hazard removal. Final Gambit can also be used to take out a problematic Pokemon for your team.</p>
+		
+		<p>Team Options<br />========</p>
+ 
+		<p>Ghost-types are great teammates, as they can block Rapid Spin. Doublade defeats all the relevant Rapid Spin users one-on-one. Mega Bannette appreciates the Spikes support, as it can put pressure on stall teams with Taunt and Knock Off and on offensive teams with its priority attacks and Destiny Bond mind games. It can also sometimes prevent Defog with its priority Taunt. Braviary can take advantage of Defog with Defiant and proceed to deal heavy damage to the opposing team with its high-powered attacks. Cobalion and Rhyperior can set up Stealth Rock, further complementing the Spikes set up by Accelgor. Powerful attackers such as Hitmonlee, Zangoose, Sharpedo, Yanmega, and Zoroark hugely appreciate Spikes, as they force a lot of switches, and Spikes also allows them to OHKO and 2HKO many threats that they could not otherwise. They also deter the usage of Defog and Rapid Spin due to the huge offensive pressure they put on the opponent. Sharpedo and Yanmega get special mentions as they can easily clean late-game with Spikes support, thanks for their high offenses and Speed Boost. Choice Specs Yanmega becomes almost uncounterable with Spikes support, as its best counter, specially defensive Registeel, can be easily worn down by Spikes.</p>		
+	</div>
+
+	<div id="stratCommentsSection">
+		<!--<h2>Strategy Comments Section</h2>-->
+		<input type="text" id="stratCommentsHeader" name="stratCommentsHeader" value="" class="incorrect">
+		<p>Other Options<br />========</p>
+
+		<p>Accelgor can use an offensive Life Orb set, though Accelgor is outclassed by Yanmega. A Choice set is plausible, as it has good coverage and U-turn, but this is also done better by Yanmega. It can use a Quick Pass set with Agility, but it does not have any other good moves to pass, and Combusken is better at passing Speed Boosts. It can use Yawn on the main set to force switches.</p>
+
+		<!--<h3>Checks &amp; Counters Header</h3>-->
+		<input type="text" id="checksHeader1" name="checksHeader1" value="Checks &amp; Counters" class="incorrect"><br />
+		<input type="text" id="checksHeader2" name="checksHeader2" value="#######" class="incorrect"><br />
+
+		<!--<h3>Checks &amp; Counters Body</h3>-->
+		<div id="checksContent">
+			<input type="text" id="checksContent1" name="checksContent1" value="**Multi-Hit Moves Users**" class="checksContent incorrect" size = "30"><p>Rhyperior and Cinccino can KO Accelgor through its Focus Sash with their multi-hit moves. However, Accelgor will still get up one layer of Spikes. Crustle can also set up hazards on Accelgor and has Sturdy, preventing it from getting KOed by Final Gambit.</p>
+			<input type="text" id="checksContent2" name="checksContent2" value="**Xatu**" class="checksContent incorrect" size="30"><p>Xatu bounces back Accelgor's Spikes due to Magic Bounce and thus prevents it from setting them up.</p>
+			<input type="text" id="checksContent3" name="checksContent3" value="**Defog and Rapid Spin**" class="checksContent incorrect" size="30"><p>Defoggers and Spinners can remove the entry hazards set by Accelgor. However, they should be wary of Final Gambit.</p>
+			<input type="text" id="checksContent4" name="checksContent4" value="**Aromatisse**" class="checksContent incorrect" size="30"><p>Aromatisse 2HKOes with Moonblast, is unaffeced by Encore, and can heal Final Gambit damage with Wish.</p>
+		</div>
+	</div>
+
+	<div id="creditsSection">
+		<!--<h2>Credits Section</h2>
+		<h3>Credits Header</h3>-->
+		<input type="text" id="creditsHeader1" name="creditsHeader1" value="Credits" class="incorrect"><br />
+		<input type="text" id="creditsHeader2" name="creditsHeader2" value="#########" class="incorrect"><br />
+
+		<!--<h3>Credits Body</h3>-->
+		<div id="creditsContent">
+			<input type="text" id="creditsContent1" name="creditsContent1" value="Written by: [Kreme, 224453]" class="creditsContent incorrect" size="75"><br />
+			<input type="text" id="creditsContent2" name="creditsContent2" value="Quality checked by: [[Eyan 226777] [Bouff, 121672], [Pak, 245869]]" class="creditsContent incorrect" size="75"><br />
+			<input type="text" id="creditsContent3" name="creditsContent3" value="Grammar checked by: [[The Dutch Plumberjack, 232216], [P Squared, 168392]" class="creditsContent incorrect" size="75">
+		</div>
+	</div>
+
+</form>
+
+<p class="completedText" style="display: none">Nice work. While QC and GP often catch all of the errors in analysis format, sometimes things can get through. And as you've seen, not all of them are obvious! It's important to check things over again before you merge to make sure there are no mistakes that were missed. Hopefully now you see the kinds of errors you need to look out for.</p>
+
+<p class="completedText" style="display: none">Please click the button below to proceed</p>
+
+<button id="proceedButton" class="completedText" style="display: none">Proceed</button>
+
+<script type="text/javascript">
+	document.getElementById("proceedButton").onclick = function () {
+		location.href = "markdown.html";
+	};
+</script>
+
+<script type="text/javascript">
+	// reset each field to the inital values on page load
+	function init() {
+		document.querySelector('form').reset();
+	}
+
+	window.onload = init();
+</script>
+
+<script type="text/javascript">
+	// gather each input into an array
+	let inputArr = document.querySelectorAll("input");
+
+	// function to monitor changes in the inputs
+	const inputHandler = function(e) {
+		const editedID = e.target.id;
+
+		switch (editedID) {
+			case 'overview':
+				if (e.target.value == '[OVERVIEW]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'setHeader1':
+				if (e.target.value == '[SET]'){
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'setContent1':
+				if (e.target.value == 'name: Spikes Lead') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'setContent3':
+				if (e.target.value == 'move 2: U-turn') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'setContent6':
+				if (e.target.value == 'item: Focus Sash') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'setContent7':
+				if (e.target.value == 'ability: Hydration') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'setContent8':
+				if (e.target.value == 'nature: Timid') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'setContent9':
+				if (e.target.value == 'evs: 252 HP / 4 SpA / 252 Spe') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'commentsHeader':
+				if (e.target.value == '[SET COMMENTS]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'stratCommentsHeader':
+				if (e.target.value == '[STRATEGY COMMENTS]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'checksHeader1':
+				if (e.target.value == 'Checks and Counters') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'checksHeader2':
+				if (/^=+$/.test(e.target.value) && e.target.value.length >= 5) {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'checksContent1':
+				if (e.target.value == '**Multi-Hit Moves Users**:') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'checksContent2':
+				if (e.target.value == '**Xatu**:') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'checksContent3':
+				if (e.target.value == '**Defog and Rapid Spin**:') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'checksContent4':
+				if (e.target.value == '**Aromatisse**:') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'creditsHeader1':
+				let header2 = document.getElementById('creditsHeader2');
+				if (e.target.value == '[CREDITS]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				} else if (e.target.value == '' && header2.value == '[CREDITS]') {
+					setCorrect(e);
+					header2.readOnly = true;
+					header2.classList.add('correct');
+					header2.classList.remove('incorrect');
+					allFinished(inputArr);
+				}
+				break;
+			case 'creditsHeader2':
+				let header1 = document.getElementById('creditsHeader1');
+				if (e.target.value == '') {
+					setCorrect(e);
+					allFinished(inputArr);
+				} else if (e.target.value == '[CREDITS]' && header1.value == '') {
+					setCorrect(e);
+					header1.readOnly = true;
+					header1.classList.add('correct');
+					header1.classList.remove('incorrect');
+					allFinished(inputArr);
+				}
+				break;
+			case 'creditsContent1':
+				if (e.target.value == '- Written by: [[Kreme, 224453]]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'creditsContent2':
+				if (e.target.value == '- Quality checked by: [[Eyan, 226777], [Bouff, 121672], [Pak, 245869]]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			case 'creditsContent3':
+				if (e.target.value == '- Grammar checked by: [[The Dutch Plumberjack, 232216], [P Squared, 168392]]') {
+					setCorrect(e);
+					allFinished(inputArr);
+				}
+				break;
+			default:
+				console.log('err');
+		}
+	}
+
+	// add event handler to each input and check if value is incorrect
+	inputArr.forEach(function(elem) {
+		elem.addEventListener('input', inputHandler);
+		if (elem.classList.contains("correct")) {
+			elem.readOnly = true;
+		}
+	})
+
+
+	function setCorrect(e) {
+		e.target.readOnly = true;
+		e.target.classList.add("correct");
+		e.target.classList.remove('incorrect');
+	}
+
+	function allFinished(arr) {
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i].classList.contains("incorrect")) {
+				return;
+			}
+		}
+		document.getElementById("analysisForm").style.display = 'none';
+		document.getElementById("exercise").innerHTML = 'Exercise: Completed!';
+		const comp = document.getElementsByClassName("completedText");
+		for (let i = 0; i < comp.length; i++) {
+			comp[i].style.display = 'block';
+		}
+	}
+
+	document.getElementById('forceButton').onclick = function () {
+		inputArr.forEach(function(elem) {
+			elem.classList.add('correct');
+			elem.classList.remove('incorrect');
+		})
+		allFinished(inputArr);
+	};
+
+
+</script>
+
+
+</body>
+</html>

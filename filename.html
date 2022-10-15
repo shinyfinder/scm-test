@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Filenames</title>
+
+	<style>
+		form > div {
+			margin: 50px 0px;
+		}
+
+		#result1, #result2 {
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<h2 id="exercise">Exercise: Filenames</h2>
+
+	<p>When uploading analyses to the dex, it is important to remember the conventions that we use when naming the file. This naming convetion is what determines the URL to the page. A mistake here means that people may not be able to find the analysis! Take the following couple of examples:</p>
+	<dl>
+		<dt>Correct</dt>
+		<dd><a href="https://www.smogon.com/dex/sm/pokemon/minior/" target="_blank">/dex/sm/pokemon/minior/</a></dd>
+
+		<dt>Incorrect</dt>
+		<dd>/dex/sm/pokemon/minior-meteor/</dd>
+	</dl>
+
+	<p>If we look at Minior's dex entry, we see that there is no separate page for its Meteor forme. That is because we follow the convention that Pok&eacute;mon that change formes during battle do not get their own dex pages.</p>
+
+	<div id="rule1">
+		<p>Rule 1: Pok&eacute;mon that change formes during battle do not get their own dex pages.</p>
+	</div>
+
+	<p>Let's look at another important rule we follow:</p>
+	<dl>
+		<dt>Correct</dt>
+		<dd><a href="https://www.smogon.com/dex/sm/pokemon/rotom-wash/" target="_blank">/dex/sm/pokemon/rotom-wash/</a></dd>
+
+		<dt>Incorrect</dt>
+		<dd>/dex/sm/pokemon/rotom-w/</dd>
+	</dl>
+
+	<p>Rotom does not change formes in the middle of battle; so, in accordance with rule 1, we see that Rotom-Wash gets its own dex page (notice how the path is /pokemon/rotom-wash/ and not /pokemon/rotom/). In addtion, the correct filename is rotom-wash and not rotom-w. This allows us to establish important rule #2 in filename conventions:</p>
+
+	<div id="rule2">
+		<p>Rule 2: Pages use non-truncated forme names for filenames.</p>
+	</div>
+
+	<p>Test your understanding with the following exercises. In each case, choose the correct filename from the list of options.</p>
+	
+	<hr />
+
+<form id="filenameForm">
+	<h2>Choose the correct filename from the list of options</h2>
+	<div id="rule1Section">
+		<p>/xy/uber/aegislash-blade</p>
+
+		<input type="radio" id="rule1Orig" name="rule1Opts" value="orig">
+			<label for="rule1Orig">/xy/uber/aegislash-blade</label><br />
+		<input type="radio" id="rule1Path" name="rule1Opts" value="wrongPath">
+			<label for="rule1Path">/xy/uber/aegislash</label><br />
+		<input type="radio" id="rule1Corr" name="rule1Opts" value="correct">
+			<label for="rule1Corr">/xy/pokemon/aegislash/uber</label><br />
+		<input type="radio" id="rule1Name" name="rule1Opts" value="wrongName">
+			<label for="rule1Name">/xy/pokemon/aegislash-blade/uber</label><br />
+		<p id="result1"></p>
+	</div>
+
+	<div id="rule2Section">		
+		<p>/xy/uber/deoxys-a</p>
+
+		<input type="radio" id="rule2Orig" name="rule2Opts" value="orig">
+			<label for="rule2Orig">/xy/uber/deoxys-a</label><br />
+		<input type="radio" id="rule2Path" name="rule2Opts" value="wrongPath">
+			<label for="rule2Path">/xy/uber/deoxys-attack</label><br />
+		<input type="radio" id="rule2Name" name="rule2Opts" value="wrongName">
+			<label for="rule2Name">/xy/pokemon/deoxys-a/uber</label><br />
+		<input type="radio" id="rule2Corr" name="rule2Opts" value="correct">
+			<label for="rule2Corr">/xy/pokemon/deoxys-attack/uber</label><br />
+		<p id="result2"></p>
+	</div>
+</form>
+
+<p class="completedText" style="display: none">Great. Remember these two rules and you should be good to go regarding proper filenames. Don't forget you can always reference the current URLs in the dex if you forget.</p>
+
+<p class="completedText" style="display: none">Please click the button below to proceed.</p>
+
+<button id="proceedButton" class="completedText" style="display: none">Proceed</button>
+
+<!--Script for proceed to next page button-->
+<script type="text/javascript">
+	document.getElementById("proceedButton").onclick = function () {
+		location.href = "cms.html";
+	};
+</script>
+
+<!--Script to reset form on page load-->
+<script type="text/javascript">
+	// reset each field to the inital values on page load
+	function init() {
+		document.querySelector('form').reset();
+	}
+
+	window.onload = init();
+</script>
+
+
+
+<!--Script to handle input-->
+<script type="text/javascript">
+	// gather each input into an array
+	let inputArr = document.querySelectorAll("input");
+
+	// function to monitor changes in the inputs
+	const inputHandler = function(e) {
+		const editedID = e.target.id;
+
+		switch (editedID) {
+			case 'rule1Orig':
+				document.getElementById("result1").innerHTML = "Remember the rules! There's something wrong here.";
+				break;
+			case 'rule1Path':
+				document.getElementById("result1").innerHTML = "Does the path match the same format as the current URLs on the dex?";
+				break;
+			case 'rule1Name':
+				document.getElementById("result1").innerHTML = "This is the correct path, but does the filename follow the rules?";
+				break;
+			case 'rule1Corr':
+				document.getElementById("result1").innerHTML = "Correct!";
+				document.getElementById("result1").style.color = "green";
+				// disable the inputs
+				const result1Inputs = document.getElementsByName("rule1Opts");
+				setCorrect(result1Inputs);
+				allFinished(inputArr);
+				break;
+			case 'rule2Orig':
+				document.getElementById("result2").innerHTML = "Remember the rules! There's something wrong here.";
+				break;
+			case 'rule2Path':
+				document.getElementById("result2").innerHTML = "Does the path match the same format as the current URLs on the dex?";
+				break;
+			case 'rule2Name':
+				document.getElementById("result2").innerHTML = "This is the correct path, but does the filename follow the rules?";
+				break;
+			case 'rule2Corr':
+				document.getElementById("result2").innerHTML = "Correct!";
+				document.getElementById("result2").style.color = "green";
+				// disable the inputs
+				const result2Inputs = document.getElementsByName("rule2Opts");
+				setCorrect(result2Inputs);
+				allFinished(inputArr);
+				break;
+			default:
+				console.log('err');
+		}
+	}
+
+	// add event handler to each input and check if value is incorrect
+	inputArr.forEach(function(elem) {
+		elem.addEventListener('input', inputHandler);
+		if (elem.classList.contains("correct")) {
+			elem.readOnly = true;
+		}
+	})
+
+
+	function setCorrect(arr) {
+		for (let i = 0; i < arr.length; i++) {
+			arr[i].disabled = true;
+			arr[i].classList.add("correct");
+		}
+	}
+
+	function allFinished(arr) {
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i].disabled == false) {
+				return;
+			}
+		}
+		document.getElementById("filenameForm").style.display = 'none';
+		document.getElementById("exercise").innerHTML = 'Exercise: Completed!';
+		const comp = document.getElementsByClassName("completedText");
+		for (let i = 0; i < comp.length; i++) {
+			comp[i].style.display = 'block';
+		}
+	}
+
+
+</script>
+
+
+</body>
+</html>
