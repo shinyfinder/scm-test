@@ -41,8 +41,6 @@
 
 	<p>Add proper Markdown snytax to the text below. If you need a guide on proper Markdown syntax, you can find one <a href="https://daringfireball.net/projects/markdown/syntax" target="_blank">here</a>. Closing or reloading this page will reset your answers. Incorrect entries are marked by a thick red border. Once the correct value is entered, the border will become green and the input will be locked in. Correct all of the fields to proceed.</p>
 
-	<button id="forceButton">Force all fields completed</button>
-
 	<hr />
 
 <form id="markdownForm">
@@ -195,14 +193,6 @@
 			comp[i].style.display = 'block';
 		}
 	}
-
-	document.getElementById('forceButton').onclick = function () {
-		inputArr.forEach(function(elem) {
-			elem.classList.add('correct');
-			elem.classList.remove('incorrect');
-		})
-		allFinished(inputArr);
-	};
 
 
 </script>
